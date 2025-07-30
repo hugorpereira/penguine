@@ -3,4 +3,4 @@ import streamlit as st
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 
-st.title("Penguine species prediction ML app")
+st.title("Penguine species prediction")
