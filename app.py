@@ -17,3 +17,6 @@ with st.expander("Input Data"):
 
 with st.expander("Data preparation"):
     pass
+
+with st.sidebar:
+    pass
