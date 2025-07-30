@@ -20,7 +20,7 @@ with st.expander("Data"):
     y_raw
     
     st.write("Descriptive Statistics")
-    desc = dt.describe()
+    desc = df.describe()
     desc
 
 with st.expander("Data Visualization"):
