@@ -46,7 +46,7 @@ with st.sidebar:
     bill_depth_mm = st.slider("Bill depth (mm)", 13.1, 21.5, 17.2)
     flipper_depth_mm = st.slider("Flipper depth (mm)", 172.0, 231.0, 201.0)
     body_mass_g = st.slider("Body mass (g)", 2700.0, 6300.0, 4207.0)
-    sex = st.selectbox("Gender", ("male", "female"))
+    gender = st.selectbox("Gender", ("male", "female"))
 
     data = {
         "island": island,
@@ -54,7 +54,7 @@ with st.sidebar:
         "bill_length_mm": bill_length_mm,
         "flipper_depth_mm": flipper_depth_mm,
         "body_mass_g": body_mass_g,
-        "sex": sex
+        "sex": gender
     }
 
     input_df = pd.DataFrame(data,index=[0])
