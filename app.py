@@ -24,8 +24,8 @@ with st.expander("Data"):
     desc
 
     st.write("More information about Data")
-    info = df.info
-    info
+    info = df.info()
+    print(info)
 
 with st.expander("Data Visualization"):
     pass
