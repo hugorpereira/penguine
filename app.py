@@ -4,3 +4,7 @@ import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 
 st.title("Penguine species prediction")
+st.info("This is end-to-end Machine Learning app")
+
+with st.expander("Data"):
+    pass
