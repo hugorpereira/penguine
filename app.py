@@ -24,7 +24,10 @@ with st.expander("Data"):
     desc
 
     st.write("More information about Data")
-    df.info()
+    buffer = io.StringIO()
+    df.info(buf=buffer)
+    info_string = buffer.getvalue()
+    st.text(info_string)
 
 with st.expander("Data Visualization"):
     pass
