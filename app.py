@@ -7,7 +7,8 @@ st.title("Penguine species prediction")
 st.info("This is end-to-end Machine Learning app")
 
 with st.expander("Data"):
-    pass
+    st.write("**Raw data**")
+    df = pd.read_csv("./data/penguins_cleaned.csv")
 
 with st.expander("Data Visualization"):
     pass
