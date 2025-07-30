@@ -68,7 +68,7 @@ with st.sidebar:
         st.write("**Combined data**")
         input_penguins
     
-    encode = ["island", "sex"]
+    encode = ["island", "sex", ""]
     df_penguins = pd.get_dummies(input_penguins, prefix = encode)
 
     X = df_penguins[1:]
