@@ -8,7 +8,7 @@ st.info("This is end-to-end Machine Learning app")
 
 with st.expander("Data"):
     st.write("**Raw data**")
-    df = pd.read_csv("./data/penguins_cleaned.csv")
+    df = pd.read_csv("data/penguins_cleaned.csv")
 
 with st.expander("Data Visualization"):
     pass
