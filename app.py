@@ -28,7 +28,7 @@ with st.expander("Data"):
     buffer = io.StringIO()
     df.info(buf=buffer)
     info_string = buffer.getvalue()
-    st.text(info_string)
+    st.dataframe(info_string)
 
 with st.expander("Data Visualization"):
     pass
