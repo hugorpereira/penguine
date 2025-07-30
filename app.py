@@ -12,3 +12,8 @@ with st.expander("Data"):
 with st.expander("Data Visualization"):
     pass
 
+with st.expander("Input Data"):
+    pass
+
+with st.expander("Data preparation"):
+    pass
