@@ -1,5 +1,5 @@
 import pandas as pd
-import streamlit
+import streamlit as st
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 
