@@ -31,7 +31,7 @@ with st.expander("Data"):
     st.text(info_string)
 
 with st.expander("Data Visualization"):
-    pass
+    st.scatter_chart(data=df, x='bill_length_mm',y='body_mass_g',color='species')
 
 with st.expander("Input Data"):
     pass
@@ -66,3 +66,6 @@ with st.sidebar:
 
         st.write("**Combined data**")
         input_penguins
+    
+    encode = ["island", "gender"]
+    df_penguins = pd.get_dummies(input_penguins, prefix = encode)
