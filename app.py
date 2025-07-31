@@ -21,15 +21,15 @@ with st.expander("Data"):
     y_raw = df.species
     y_raw
     
-    st.write("Descriptive Statistics")
-    desc = df.describe()
-    desc
+    # st.write("Descriptive Statistics")
+    # desc = df.describe()
+    # desc
 
-    st.write("More information about Data")
-    buffer = io.StringIO()
-    df.info(buf=buffer)
-    info_string = buffer.getvalue()
-    st.text(info_string)
+    # st.write("More information about Data")
+    # buffer = io.StringIO()
+    # df.info(buf=buffer)
+    # info_string = buffer.getvalue()
+    # st.text(info_string)
 
 with st.expander("Data Visualization"):
     #st.scatter_chart(data=df, x='bill_length_mm',y='body_mass_g',color='species')
@@ -44,7 +44,7 @@ with st.expander("Data Visualization"):
     st.altair_chart(chart, use_container_width=True)
 
 with st.sidebar:
-    st.header("Input Variables")
+    st.header("Input features")
 
     island = st.selectbox("Island", ("Biscoe","Dream", "Torgersen"))
     bill_length_mm = st.slider("Bill length (mm)", 32.1, 59.6, 43.9)
@@ -70,7 +70,7 @@ with st.expander("Input data"):
     st.write("**Input data**")
     input_df
 
-    st.write("**Combined data**")
+    st.write("**Combined penguins data**")
     input_penguins
     
 encode = ["island", "sex"]
@@ -113,30 +113,29 @@ df_prediction_proba.rename(columns={0: 'Adelie',
 
 # Display predicted species
 st.subheader('Predicted Species')
-st.dataframe(df_prediction_proba,
-             column_config={
-               'Adelie': st.column_config.ProgressColumn(
-                 'Adelie',
-                 format='%f',
-                 width='medium',
-                 min_value=0,
-                 max_value=1
-               ),
-               'Chinstrap': st.column_config.ProgressColumn(
-                 'Chinstrap',
-                 format='%f',
-                 width='medium',
-                 min_value=0,
-                 max_value=1
-               ),
-               'Gentoo': st.column_config.ProgressColumn(
-                 'Gentoo',
-                 format='%f',
-                 width='medium',
-                 min_value=0,
-                 max_value=1
-               ),
-             }, hide_index=True)
+st.dataframe(df_prediction_proba,column_config={
+    'Adelie': st.column_config.ProgressColumn(
+        'Adelie',
+        format='%f',
+        width='medium',
+        min_value=0,
+        max_value=1
+    ),
+    'Chinstrap': st.column_config.ProgressColumn(
+        'Chinstrap',
+        format='%f',
+        width='medium',
+        min_value=0,
+        max_value=1
+    ),
+    'Gentoo': st.column_config.ProgressColumn(
+        'Gentoo',
+        format='%f',
+        width='medium',
+        min_value=0,
+        max_value=1
+    ),
+}, hide_index=True)
 
 
 penguins_species = np.array(['Adelie', 'Chinstrap', 'Gentoo'])
