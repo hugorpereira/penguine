@@ -3,6 +3,7 @@ import streamlit as st
 import numpy as np
 import io
 from sklearn.ensemble import RandomForestClassifier
+import altair as alt
 
 st.title("Penguine species prediction")
 st.info("This is end-to-end Machine Learning app")
