@@ -12,11 +12,11 @@ with st.expander("Data"):
     df = pd.read_csv("data/penguins_cleaned.csv")
     df
 
-    st.write("Input variables")
+    st.write("Input variables (X)")
     X_raw = df.drop("species", axis=1)
     X_raw
 
-    st.write("Target variable")
+    st.write("Target variable (y)")
     y_raw = df.species
     y_raw
     
@@ -31,10 +31,16 @@ with st.expander("Data"):
     st.text(info_string)
 
 with st.expander("Data Visualization"):
-    st.scatter_chart(data=df, x='bill_length_mm',y='body_mass_g',color='species')
+    #st.scatter_chart(data=df, x='bill_length_mm',y='body_mass_g',color='species')
 
-with st.expander("Data preparation"):
-    pass
+    chart = alt.Chart(df).mark_circle(size=60).encode(
+        x='bill_length_mm',
+        y='body_mass_g',
+        color='species',
+        tooltip=['species', 'bill_length_mm', 'body_mass_g']
+    ).interactive()
+
+    st.altair_chart(chart, use_container_width=True)
 
 with st.sidebar:
     st.header("Input Variables")
@@ -77,7 +83,60 @@ target_mapper = {
     'Chinstrap': 1,
     'Gentoo': 2
 }
+
 def target_encode(val):
     return target_mapper[val]
 
 y = y_raw.apply(target_encode)
+
+with st.expander('Data preparation'):
+    st.write('**Encoded X (input penguin)**')
+    input_row
+    st.write('**Encoded y**')
+    y
+
+# Model training and inference
+## Train the ML model
+clf = RandomForestClassifier()
+clf.fit(X, y)
+
+## Apply model to make predictions
+prediction = clf.predict(input_row)
+prediction_proba = clf.predict_proba(input_row)
+
+df_prediction_proba = pd.DataFrame(prediction_proba)
+df_prediction_proba.columns = ['Adelie', 'Chinstrap', 'Gentoo']
+df_prediction_proba.rename(columns={0: 'Adelie',
+                                 1: 'Chinstrap',
+                                 2: 'Gentoo'})
+
+# Display predicted species
+st.subheader('Predicted Species')
+st.dataframe(df_prediction_proba,
+             column_config={
+               'Adelie': st.column_config.ProgressColumn(
+                 'Adelie',
+                 format='%f',
+                 width='medium',
+                 min_value=0,
+                 max_value=1
+               ),
+               'Chinstrap': st.column_config.ProgressColumn(
+                 'Chinstrap',
+                 format='%f',
+                 width='medium',
+                 min_value=0,
+                 max_value=1
+               ),
+               'Gentoo': st.column_config.ProgressColumn(
+                 'Gentoo',
+                 format='%f',
+                 width='medium',
+                 min_value=0,
+                 max_value=1
+               ),
+             }, hide_index=True)
+
+
+penguins_species = np.array(['Adelie', 'Chinstrap', 'Gentoo'])
+st.success(str(penguins_species[prediction][0]))
